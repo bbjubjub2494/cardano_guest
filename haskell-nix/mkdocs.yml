@@ -1,0 +1,59 @@
+# You can use mkdocs from nix, by running the following:
+#
+#   nix-shell -p mkdocs
+#
+# that should pop you into a shell, where you can then
+# run
+#
+#   mkdocs serve
+#
+# and point your browser to localhost:8000
+#
+site_name: Alternative Haskell Infrastructure for Nixpkgs
+theme: readthedocs
+site_url: null
+repo_url: https://github.com/input-output-hk/haskell.nix
+permalink: true
+markdown_extensions:
+  - admonition
+  - footnotes
+  - tables
+  - toc:
+      permalink: true
+
+# this is called `nav` in more recent mkdocs versions. Mine
+# right now is 0.17.5
+pages:
+  - 'Introduction': index.md
+  - 'Motivation': motivation.md
+  - 'Architecture': architecture.md
+  - 'Tutorials':
+    - 'Getting Started': tutorials/getting-started.md
+    - 'Getting started with Flakes': tutorials/getting-started-flakes.md
+    - 'Creating a development environment': tutorials/development.md
+    - 'Sourcing files only part of git repository using cleanGit': tutorials/clean-git.md
+    - 'Handling git repositories in projects': tutorials/source-repository-hashes.md
+    - 'Mapping non-Haskell dependencies to Nixpkgs': tutorials/pkg-map.md
+    - 'Bumping Hackage and Stackage snapshots': tutorials/hackage-stackage.md
+    - 'Materialization: Speeding up Nix evaluation': tutorials/materialization.md
+    - 'Cross-compiling your project': tutorials/cross-compilation.md
+    - 'Generating coverage information': tutorials/coverage.md
+  - 'Reference':
+    - 'Supported GHC versions': reference/supported-ghc-versions.md
+    - 'Command-line tools': reference/commands.md
+    - 'Haskell.nix Library': reference/library.md
+    - 'Module options': reference/modules.md
+  - 'Troubleshooting': troubleshooting.md
+  - 'Templates / Abstraction':
+    - 'IOHKs nix library': iohk-nix.md
+  - 'Dev Notes':
+    - 'Architecture': dev/dev-architecture.md
+    - 'Installing nix-tools': dev/installing-nix-tools.md
+    - 'Manually generating Nix expressions': dev/manually-generating-nix-expressions.md
+    - 'Maintainer Scripts': dev/maintainer-scripts.md
+    - 'Nixpkgs Pin': dev/nixpkgs-pin.md
+    - 'Removing withPackage wrapper': dev/removing-with-package-wrapper.md
+    - 'Test Suite': dev/tests.md
+    - 'Adding a new GHC version': dev/adding-new-ghc.md
+    - 'Coverage': dev/coverage.md
+  - 'ChangeLog': changelog.md

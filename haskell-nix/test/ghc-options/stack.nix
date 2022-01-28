@@ -1,0 +1,40 @@
+{ stdenv, lib, stackProject', recurseIntoAttrs, haskellLib, testSrc, compiler-nix-name }:
+
+with lib;
+
+let
+  project = stackProject' {
+    src = testSrc "ghc-options";
+  };
+  packages = project.hsPkgs;
+
+  # Get the names of all packages. This is a test to see
+  # whether there is a broken "$locals" package present.
+  hasIdentifier = p: p != null && p ? identifier;
+  packageNames = mapAttrsToList (name: p: p.identifier.name) (filterAttrs (name: hasIdentifier) packages);
+
+in recurseIntoAttrs {
+  # This test is somehow broken for ghcjs
+  meta.disabled = stdenv.hostPlatform.isGhcjs || compiler-nix-name != "ghc865";
+
+  ifdInputs = {
+    inherit (project) stack-nix;
+  };
+  run = stdenv.mkDerivation {
+    name = "callStackToNix-test";
+
+    buildCommand = ''
+      printf "checking whether executable runs... " >& 2
+      cat ${haskellLib.check packages.test-ghc-options.components.exes.test-ghc-options-exe}/test-stdout
+
+      echo '${concatStringsSep " " packageNames}' > $out
+    '';
+
+    meta.platforms = platforms.all;
+
+    passthru = {
+      # Attributes used for debugging with nix repl
+      inherit project packages;
+    };
+  };
+}
