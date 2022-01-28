@@ -8,7 +8,7 @@
   inputs.flake-compat.flake = false;
   inputs.nix-tools.url = "path:nix-tools/";
   inputs.nix-tools.flake = false;
-  inputs.haskell-nix.url = "github:input-output-hk/haskell.nix";
+  inputs.haskell-nix.url = "path:haskell-nix/";
   inputs.haskell-nix.inputs.nix-tools.follows = "nix-tools";
 
   # Outputs are the public-facing interface to the flake.
