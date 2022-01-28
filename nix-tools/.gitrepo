@@ -1,0 +1,12 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/input-output-hk/nix-tools
+	branch = master
+	commit = ed5bd7215292deba55d6ab7a4e8c21f8b1564dda
+	parent = e6f45ed426ec46ab1c13ce9718738d857acf3277
+	method = merge
+	cmdver = 0.4.1
