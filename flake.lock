@@ -207,7 +207,7 @@
         "stackage": "stackage"
       },
       "locked": {
-        "narHash": "sha256-QxfMCTNb4Qrl8s5fr79E5VIQ9U1Z5mcfnHVc+fkCRrY=",
+        "narHash": "sha256-MTVFKAVakjH/xicKuwdnW1E9GWkl8bbEGqGzu0Fij5g=",
         "path": "haskell-nix/",
         "type": "path"
       },

@@ -8,7 +8,7 @@ let
     };
   pkgs = args.pkgs or (import nixpkgsSrc {});
   flake-compat =
-    pkgs.fetchzip {
+    builtins.fetchTarball {
       url = "https://github.com/edolstra/flake-compat/archive/5523c47f13259b981c49b26e28499724a5125fd8.tar.gz";
       sha256 = "sha256-7IySNHriQjzOZ88DDk6VDPf1GoUaOrOeUdukY62o52o=";
     };
@@ -23,7 +23,6 @@ let
     #   in `test/default.nix`).  If `flake-compat` copies the whole git repo, any change to the
     #   repo causes a change of input for all tests.
     src = { outPath = ./.; };
-    inherit pkgs;
   };
 in self.defaultNix // (self.defaultNix.internal.compat
 ({ system = args.pkgs.system or builtins.currentSystem; } // args))
