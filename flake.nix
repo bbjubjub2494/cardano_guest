@@ -6,7 +6,10 @@
   inputs.fup.url = "github:gytis-ivaskevicius/flake-utils-plus/v1.3.1";
   inputs.flake-compat.url = "github:edolstra/flake-compat";
   inputs.flake-compat.flake = false;
+  inputs.nix-tools.url = "path:nix-tools/";
+  inputs.nix-tools.flake = false;
   inputs.haskell-nix.url = "github:input-output-hk/haskell.nix";
+  inputs.haskell-nix.inputs.nix-tools.follows = "nix-tools";
 
   # Outputs are the public-facing interface to the flake.
   outputs = inputs@{ self, fup, haskell-nix, nixpkgs, ... }: fup.lib.mkFlake {

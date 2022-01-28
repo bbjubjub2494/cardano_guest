@@ -192,7 +192,9 @@
         "ghc-8.6.5-iohk": "ghc-8.6.5-iohk",
         "hackage": "hackage",
         "hpc-coveralls": "hpc-coveralls",
-        "nix-tools": "nix-tools",
+        "nix-tools": [
+          "nix-tools"
+        ],
         "nixpkgs": [
           "haskell-nix",
           "nixpkgs-2111"
@@ -237,17 +239,13 @@
     "nix-tools": {
       "flake": false,
       "locked": {
-        "lastModified": 1636018067,
-        "narHash": "sha256-ng306fkuwr6V/malWtt3979iAC4yMVDDH2ViwYB6sQE=",
-        "owner": "input-output-hk",
-        "repo": "nix-tools",
-        "rev": "ed5bd7215292deba55d6ab7a4e8c21f8b1564dda",
-        "type": "github"
+        "narHash": "sha256-GIsLh9f3ckt6BWkTTkdwu0HtwSN9sbrQTnLJEbYS2W4=",
+        "path": "nix-tools/",
+        "type": "path"
       },
       "original": {
-        "owner": "input-output-hk",
-        "repo": "nix-tools",
-        "type": "github"
+        "path": "nix-tools/",
+        "type": "path"
       }
     },
     "nixpkgs": {
@@ -350,6 +348,7 @@
         "flake-compat": "flake-compat",
         "fup": "fup",
         "haskell-nix": "haskell-nix",
+        "nix-tools": "nix-tools",
         "nixpkgs": "nixpkgs"
       }
     },
