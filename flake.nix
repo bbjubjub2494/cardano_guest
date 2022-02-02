@@ -34,6 +34,9 @@
 
     outputsBuilder = channels: {
       devShell = channels.nixpkgs.callPackage nix/devshell.nix { };
+      devShells.withGHC8105 = channels.nixpkgs.callPackage nix/devshell.nix {
+        compiler-nix-name = "ghc8105";
+      };
 
       packages = {
         inherit (channels.nixpkgs) cardano-node;

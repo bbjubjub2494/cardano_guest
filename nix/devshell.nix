@@ -1,8 +1,8 @@
-{ mkShell, haskellPackages, haskell-nix }:
+{ mkShell, haskellPackages, haskell-nix, compiler-nix-name ? "ghc8107" }:
 
 mkShell {
         buildInputs = [
-          haskell-nix.nix-tools.ghc8107
+          haskell-nix.nix-tools.${compiler-nix-name}
           haskellPackages.cabal-install
           haskellPackages.ghc
         ];
