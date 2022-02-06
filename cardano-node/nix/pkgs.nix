@@ -1,10 +1,9 @@
 # our packages overlay
 final: prev: with final;
   let
-    compiler-nix-name = config.haskellNix.compiler or "ghc8107";
+    compiler-nix-name = config.haskellNix.compiler or "ghc8105";
   in {
   cardanoNodeProject = import ./haskell.nix {
-    name = "cardano-node";
     inherit compiler-nix-name
       lib
       haskell-nix
@@ -14,7 +13,6 @@ final: prev: with final;
   };
   cardanoNodeHaskellPackages = cardanoNodeProject.hsPkgs;
   cardanoNodeProfiledHaskellPackages = (import ./haskell.nix {
-    name = "cardano-node";
     inherit compiler-nix-name
       lib
       haskell-nix
@@ -24,7 +22,6 @@ final: prev: with final;
     profiling = true;
   }).hsPkgs;
   cardanoNodeEventlogHaskellPackages = (import ./haskell.nix {
-    name = "cardano-node";
     inherit compiler-nix-name
       lib
       haskell-nix

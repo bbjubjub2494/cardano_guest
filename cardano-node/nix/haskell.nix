@@ -14,7 +14,6 @@
 , assertedPackages ? []
 # Version info, to be passed when not building from a git work tree
 , gitrev ? null
-, name
 }:
 let
 
@@ -23,16 +22,7 @@ let
     src = ../.;
   });
 
-  plan-pkgs = import ./plan-pkgs.nix;
-  pkg-set = haskell-nix.mkCabalProjectPkgSet {
-    inherit compiler-nix-name plan-pkgs;
-  };
-  cabalProject = args: haskell-nix.addProjectAndPackageAttrs {
-    inherit (pkg-set.config) hsPkgs;
-    inherit pkg-set args;
-  };
-
-  rawProject = cabalProject (mkProjectArgs []);
+  rawProject = haskell-nix.cabalProject' (mkProjectArgs []);
 
   projectPackages =  lib.attrNames (haskell-nix.haskellLib.selectProjectPackages
     rawProject.hsPkgs);
@@ -40,7 +30,7 @@ let
   # It is important this common options matches in both calls to cabalProject or `cabal configure`
   # will run twice.
   mkProjectArgs = modules: {pkgs, ...}: {
-    inherit compiler-nix-name  src modules name;
+    inherit compiler-nix-name  src modules;
     cabalProjectLocal = ''
       allow-newer: terminfo:base
     '' + lib.optionalString pkgs.stdenv.hostPlatform.isWindows ''
@@ -52,7 +42,7 @@ let
 
   # This creates the Haskell package set.
   # https://input-output-hk.github.io/haskell.nix/user-guide/projects/
-  pkgSet = cabalProject (mkProjectArgs [
+  pkgSet = haskell-nix.cabalProject' (mkProjectArgs [
     # Allow reinstallation of Win32
     ({ pkgs, ... }: lib.mkIf pkgs.stdenv.hostPlatform.isWindows {
      nonReinstallablePkgs =
