@@ -14,6 +14,8 @@
   inputs.cardano-node.inputs.haskellNix.follows = "haskell-nix";
   inputs.cardano-node.inputs.nixpkgs.follows = "nixpkgs";
 
+  inputs.config.url = "github:lourkeur/config";
+
   # Outputs are the public-facing interface to the flake.
   outputs = inputs@{ self, fup, haskell-nix, cardano-node, nixpkgs, ... }: fup.lib.mkFlake {
 
@@ -22,6 +24,7 @@
     supportedSystems = [ "x86_64-linux" ];
 
     sharedOverlays = [
+      inputs.config.overlays.nix  # fix https://github.com/NixOS/nix/issues/6013
       (final: _: {
         inherit (haskell-nix.legacyPackages.${final.system}) haskell-nix;
         inherit (cardano-node.legacyPackages.${final.system}) cardano-node;
