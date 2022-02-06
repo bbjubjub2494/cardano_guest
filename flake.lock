@@ -562,7 +562,7 @@
     "nix-tools": {
       "flake": false,
       "locked": {
-        "narHash": "sha256-GIsLh9f3ckt6BWkTTkdwu0HtwSN9sbrQTnLJEbYS2W4=",
+        "narHash": "sha256-fhHpFInf7bR04GN/Ln+StVwS6poRhXuBYLI/RKP2Gkc=",
         "path": "nix-tools/",
         "type": "path"
       },
