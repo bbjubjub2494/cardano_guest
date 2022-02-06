@@ -13,6 +13,7 @@
   inputs.cardano-node.url = "path:cardano-node/";
   inputs.cardano-node.inputs.haskellNix.follows = "haskell-nix";
   inputs.cardano-node.inputs.nixpkgs.follows = "nixpkgs";
+  inputs.nixpkgs.url = "nixpkgs/nixos-unstable";
 
   inputs.config.url = "github:lourkeur/config";
 
