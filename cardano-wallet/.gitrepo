@@ -4,9 +4,9 @@
 ; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
 ;
 [subrepo]
-	remote = https://github.com/input-output-hk/cardano-wallet
+	remote = https://github.com/lourkeur/cardano-wallet
 	branch = v2022-01-18
-	commit = a5085acbd2670c24251cf8d76a4e83c77a2679ba
-	parent = 85b065d0ae8813e6c2b265e7a2e241b231d9823b
+	commit = 8cc8cb3b7a74ba52816fa6c8a8aa7e62c4a5fdfc
+	parent = d05bee5d8bd8bfa0bac937d00ea5ccaa8742329b
 	method = merge
 	cmdver = 0.4.1
