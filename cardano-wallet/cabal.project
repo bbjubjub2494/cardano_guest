@@ -1,0 +1,316 @@
+--------------------------------------------------------------------------------
+-- Cabal project file
+-- -----------------------------------------------------------------------------
+--
+-- Example build command:
+--
+--   cabal build all --enable-tests --enable-benchmarks -O0
+--
+-- -----------------------------------------------------------------------------
+-- Updating this file
+--
+-- Note that the canonical source of dependencies is stack.yaml and
+-- cabal.project should be kept in sync with that. The Nix packages
+-- are generated from stack.yaml not cabal.project.
+--
+-- -----------------------------------------------------------------------------
+-- How to use with the nix-shell
+--
+-- The advantage of building under nix-shell is that the correct
+-- versions of all build and test dependencies are set up for you in the
+-- nix-shell environment.
+--
+-- All dependencies, including Haskell package dependencies, have been
+-- built on Hydra and are transparently downloaded from the IOHK
+-- cache.
+--
+-- The Haskell package set in shell.nix is automatically generated
+-- from stack.yaml.
+--
+-- To build, start "nix-shell", then run Cabal inside:
+--     nix-shell
+--     cabal build all -O0
+--
+-- To build with profiling enabled, use:
+--    nix-shell --arg profiling true
+--    cabal configure --enable-tests --enable-benchmarks --enable-profiling
+--    cabal build all
+--
+--------------------------------------------------------------------------------
+
+index-state: 2022-01-01T00:00:00Z
+with-compiler: ghc-8.10.7
+
+packages:
+    lib/dbvar/
+  , lib/core/
+  , lib/core-integration/
+  , lib/cli/
+  , lib/launcher/
+  , lib/numeric/
+  , lib/text-class/
+  , lib/test-utils/
+  , lib/shelley/
+  , lib/strict-non-empty-containers/
+
+-- Using a fork until our patches can be merged upstream
+source-repository-package
+  type: git
+  location: https://github.com/input-output-hk/optparse-applicative
+  tag: 7497a29cb998721a9068d5725d49461f2bba0e7a
+
+source-repository-package
+    type: git
+    location: https://github.com/input-output-hk/Win32-network
+    tag: 3825d3abf75f83f406c1f7161883c438dac7277d
+
+source-repository-package
+    type: git
+    location: https://github.com/input-output-hk/cardano-addresses
+    tag: 71006f9eb956b0004022e80aadd4ad50d837b621
+    subdir: command-line
+            core
+
+source-repository-package
+    type: git
+    location: https://github.com/input-output-hk/bech32
+    tag: ab61914443e5f53624d3b2995767761b3f68e576
+    subdir: bech32
+            bech32-th
+
+source-repository-package
+    type: git
+    location: https://github.com/input-output-hk/cardano-base
+    tag: 41545ba3ac6b3095966316a99883d678b5ab8da8
+    subdir:
+            base-deriving-via
+            binary
+            binary/test
+            cardano-crypto-class
+            cardano-crypto-praos
+            cardano-crypto-tests
+            orphans-deriving-via
+            measures
+            strict-containers
+            slotting
+
+source-repository-package
+    type: git
+    location: https://github.com/input-output-hk/cardano-crypto
+    tag: f73079303f663e028288f9f4a9e08bcca39a923e
+
+source-repository-package
+  type: git
+  location: https://github.com/input-output-hk/plutus
+  tag: 1efbb276ef1a10ca6961d0fd32e6141e9798bd11
+  subdir:
+    freer-extras
+    plutus-core
+    plutus-ledger
+    plutus-ledger-api
+    plutus-tx
+    plutus-tx-plugin
+    prettyprinter-configurable
+    stubs/plutus-ghc-stub
+    word-array
+
+source-repository-package
+  type: git
+  location: https://github.com/input-output-hk/ekg-forward
+  tag: 2adc8b698443bb10154304b24f6c1d6913bb65b9
+
+source-repository-package
+  type: git
+  location: https://github.com/input-output-hk/cardano-config
+  tag: e9de7a2cf70796f6ff26eac9f9540184ded0e4e6
+
+source-repository-package
+    type: git
+    location: https://github.com/input-output-hk/cardano-ledger
+    tag: 1a9ec4ae9e0b09d54e49b2a40c4ead37edadcce5
+    subdir:
+      eras/alonzo/impl
+      eras/alonzo/test-suite
+      eras/byron/chain/executable-spec
+      eras/byron/crypto
+      eras/byron/crypto/test
+      eras/byron/ledger/executable-spec
+      eras/byron/ledger/impl
+      eras/byron/ledger/impl/test
+      eras/shelley/impl
+      eras/shelley/test-suite
+      eras/shelley-ma/impl
+      eras/shelley-ma/test-suite
+      libs/cardano-ledger-core
+      libs/cardano-ledger-pretty
+      libs/cardano-protocol-tpraos
+      libs/cardano-data
+      libs/compact-map
+      libs/set-algebra
+      libs/small-steps
+      libs/small-steps-test
+      libs/non-integral
+
+source-repository-package
+    type: git
+    location: https://github.com/input-output-hk/cardano-node
+    tag: 814df2c146f5d56f8c35a681fe75e85b905aed5d
+    subdir:
+      cardano-api
+      cardano-cli
+      cardano-node
+      cardano-node-chairman
+      trace-dispatcher
+      trace-resources
+      trace-forward
+
+source-repository-package
+    type: git
+    location: https://github.com/input-output-hk/cardano-prelude
+    tag: bb4ed71ba8e587f672d06edf9d2e376f4b055555
+    subdir: cardano-prelude
+            cardano-prelude-test
+
+source-repository-package
+    type: git
+    location: https://github.com/input-output-hk/cardano-sl-x509
+    tag: 12925934c533b3a6e009b61ede555f8f26bac037
+
+source-repository-package
+    type: git
+    location: https://github.com/input-output-hk/goblins
+    tag: cde90a2b27f79187ca8310b6549331e59595e7ba
+
+source-repository-package
+    type: git
+    location: https://github.com/input-output-hk/iohk-monitoring-framework
+    tag: 808724ff8a19a33d0ed06f9ef59fbd900b08553c
+    subdir: contra-tracer
+            iohk-monitoring
+            plugins/backend-aggregation
+            plugins/backend-ekg
+            plugins/backend-monitoring
+            plugins/backend-trace-forwarder
+            tracer-transformers
+
+source-repository-package
+    type: git
+    location: https://github.com/input-output-hk/ouroboros-network
+    tag: d2d219a86cda42787325bb8c20539a75c2667132
+    subdir:
+      io-sim
+      io-classes
+      monoidal-synchronisation
+      network-mux
+      ouroboros-consensus
+      ouroboros-consensus-byron
+      ouroboros-consensus-cardano
+      ouroboros-consensus-protocol
+      ouroboros-consensus-shelley
+      ouroboros-network
+      ouroboros-network-framework
+      ouroboros-network-testing
+      strict-stm
+      typed-protocols
+      typed-protocols-cborg
+      typed-protocols-examples
+      ntp-client
+
+source-repository-package
+    type: git
+    location: https://github.com/snoyberg/http-client.git
+    tag: 1a75bdfca014723dd5d40760fad854b3f0f37156
+    subdir: http-client
+
+-- Drops an instance breaking cardano-node.
+source-repository-package
+    type: git
+    location: https://github.com/input-output-hk/flat.git
+    tag: ee59880f47ab835dbd73bea0847dab7869fc20d8
+    --sha256: 1lrzknw765pz2j97nvv9ip3l1mcpf2zr4n56hwlz0rk7wq7ls4cm
+
+-- -------------------------------------------------------------------------
+-- Constraints tweaking
+
+-- cardano-addresses unit tests bring in some version constraint conflicts.
+--
+-- 1. hjsonschema and hjsonpointer deps have overly strict bounds.
+-- 2. it has strict aeson < 1.5 dep - this will be fixed in the next release.
+allow-newer:
+    hjsonschema:*
+  , hjsonpointer:*
+  , cardano-sl-x509:ip
+  , cardano-addresses:aeson
+  , size-based:template-haskell
+
+constraints:
+    hedgehog >= 1.0.2
+  , hashable < 1.4
+  , bimap >= 0.4.0
+  , libsystemd-journal >= 1.4.4
+  , systemd >= 2.3.0
+  -- dependency of systemd-2.3.0
+  , network >= 3.1.1.1
+  -- choose versions that work with base >= 4.12
+  , hjsonpointer >= 1.5.0
+  , hjsonschema >= 1.10.0
+
+-- ----------------------------------------------------------------
+-- Flags for dependencies
+
+package cardano-config
+  flags: -systemd
+package cardano-node
+  flags: -systemd
+
+-- -------------------------------------------------------------------------
+-- Enable specific tests in this repo
+
+test-show-details: direct
+
+package dbvar
+  tests: True
+  ghc-options: -fwrite-ide-info
+
+package cardano-wallet
+  tests: True
+  ghc-options: -fwrite-ide-info
+
+package cardano-wallet-core
+  tests: True
+  ghc-options: -fwrite-ide-info
+
+package cardano-wallet-cli
+  tests: True
+  ghc-options: -fwrite-ide-info
+
+package cardano-wallet-launcher
+  tests: True
+  ghc-options: -fwrite-ide-info
+
+package cardano-wallet-text-class
+  tests: True
+  ghc-options: -fwrite-ide-info
+
+package cardano-numeric
+  tests: True
+  ghc-options: -fwrite-ide-info
+
+package cardano-wallet-core-integration
+  tests: True
+  ghc-options: -fwrite-ide-info
+
+package cardano-wallet-test-utils
+  tests: True
+  ghc-options: -fwrite-ide-info
+
+package strict-non-empty-containers
+  tests: True
+  ghc-options: -fwrite-ide-info
+
+-- Now disable all other tests with a global flag.
+-- This is what they do in cardano-node/cabal.project.
+
+tests: False
+
+-- -------------------------------------------------------------------------

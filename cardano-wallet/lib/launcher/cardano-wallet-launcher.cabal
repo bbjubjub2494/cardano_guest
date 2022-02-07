@@ -1,0 +1,101 @@
+name:                cardano-wallet-launcher
+version:             2022.1.18
+synopsis:            Utilities for a building commands launcher
+homepage:            https://github.com/input-output-hk/cardano-wallet
+author:              IOHK Engineering Team
+maintainer:          operations@iohk.io
+copyright:           2018-2020 IOHK
+license:             Apache-2.0
+category:            Web
+build-type:          Simple
+cabal-version:       >=1.10
+
+flag release
+    description: Enable optimization and `-Werror`
+    default: False
+    manual: True
+
+library
+  default-language:
+      Haskell2010
+  default-extensions:
+      NoImplicitPrelude
+      OverloadedStrings
+  ghc-options:
+      -Wall
+      -Wcompat
+      -fwarn-redundant-constraints
+  if (flag(release))
+    ghc-options:
+      -Werror
+  build-depends:
+      base
+    , bytestring
+    , code-page
+    , contra-tracer
+    , either
+    , extra
+    , filepath
+    , fmt
+    , iohk-monitoring
+    , process
+    , text
+    , text-class
+    , unliftio
+    , unliftio-core
+  hs-source-dirs:
+      src
+  exposed-modules:
+      Cardano.Launcher
+    , Cardano.Launcher.Node
+    , Cardano.Startup
+  if os(windows)
+    build-depends: Win32
+    other-modules: Cardano.Startup.Windows
+    cpp-options:   -DWINDOWS
+  else
+    build-depends: unix
+    other-modules: Cardano.Startup.POSIX
+
+test-suite unit
+  default-language:
+      Haskell2010
+  default-extensions:
+      NoImplicitPrelude
+      OverloadedStrings
+  ghc-options:
+      -threaded
+      -rtsopts
+      -Wall
+  if (flag(release))
+    ghc-options: -O2 -Werror
+  build-depends:
+      base
+    , bytestring
+    , cardano-wallet-launcher
+    , cardano-wallet-test-utils
+    , contra-tracer
+    , fmt
+    , hspec
+    , hspec-core
+    , hspec-expectations
+    , iohk-monitoring
+    , process
+    , retry
+    , text
+    , text-class
+    , time
+    , unliftio
+  build-tools:
+      hspec-discover
+  type:
+     exitcode-stdio-1.0
+  hs-source-dirs:
+      test/unit
+  main-is:
+      launcher-unit-test.hs
+  other-modules:
+      Cardano.LauncherSpec
+    , Cardano.StartupSpec
+  if os(windows)
+    cpp-options:   -DWINDOWS
