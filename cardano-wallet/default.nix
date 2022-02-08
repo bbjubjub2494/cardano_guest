@@ -30,6 +30,4 @@
 
 { ... }@args:
 with (import ./nix/flake-compat.nix args);
-defaultNix // defaultNix.packages.${builtins.currentSystem} // {
-  private.project = defaultNix.legacyPackages.${builtins.currentSystem};
-}
+defaultNix
