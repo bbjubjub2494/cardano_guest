@@ -15,10 +15,14 @@
   inputs.cardano-node.inputs.nixpkgs.follows = "nixpkgs";
   inputs.nixpkgs.url = "nixpkgs/nixos-unstable";
 
+  inputs.cardano-wallet.url = "path:cardano-wallet/";
+  inputs.cardano-wallet.inputs.haskellNix.follows = "haskell-nix";
+  inputs.cardano-wallet.inputs.nixpkgs.follows = "nixpkgs";
+
   inputs.config.url = "github:lourkeur/config";
 
   # Outputs are the public-facing interface to the flake.
-  outputs = inputs@{ self, fup, haskell-nix, cardano-node, nixpkgs, ... }: fup.lib.mkFlake {
+  outputs = inputs@{ self, fup, haskell-nix, cardano-node, cardano-wallet, nixpkgs, ... }: fup.lib.mkFlake {
 
     inherit self inputs;
 
@@ -29,11 +33,13 @@
       (final: _: {
         inherit (haskell-nix.legacyPackages.${final.system}) haskell-nix;
         inherit (cardano-node.legacyPackages.${final.system}) cardano-node;
+        inherit (cardano-wallet.packages.${final.system}) cardano-wallet;
       })
     ];
 
     nixosModules = {
       inherit (inputs.cardano-node.nixosModules) cardano-node;
+      inherit (inputs.cardano-wallet.nixosModules) cardano-wallet;
     };
 
     outputsBuilder = channels: {
@@ -44,6 +50,7 @@
 
       packages = {
         inherit (channels.nixpkgs) cardano-node;
+        inherit (channels.nixpkgs) cardano-wallet;
       };
 
       checks.cardano-node-system = (nixpkgs.lib.nixosSystem {
@@ -53,6 +60,18 @@
           {
             boot.isContainer = true;
             services.cardano-node.enable = true;
+          }
+        ];
+      }).config.system.build.toplevel;
+
+      checks.cardano-wallet-system = (nixpkgs.lib.nixosSystem {
+        inherit (channels.nixpkgs) system;
+        modules = [
+          self.nixosModules.cardano-node
+          self.nixosModules.cardano-wallet
+          {
+            boot.isContainer = true;
+            services.cardano-wallet.enable = true;
           }
         ];
       }).config.system.build.toplevel;
