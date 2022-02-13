@@ -20,6 +20,7 @@
   inputs.cardano-wallet.inputs.nixpkgs.follows = "nixpkgs";
 
   inputs.config.url = "github:lourkeur/config";
+  inputs.config.inputs.cardano.follows = "/";
 
   # Outputs are the public-facing interface to the flake.
   outputs = inputs@{ self, fup, haskell-nix, cardano-node, cardano-wallet, nixpkgs, ... }: fup.lib.mkFlake {
