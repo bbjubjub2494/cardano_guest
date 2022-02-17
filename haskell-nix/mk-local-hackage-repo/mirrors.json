@@ -1,9 +1,0 @@
-{
-  "signatures": [ ],
-  "signed": {
-    "_type": "Mirrorlist",
-    "expires": "@expires@",
-    "mirrors": [],
-    "version": 1
-  }
-}

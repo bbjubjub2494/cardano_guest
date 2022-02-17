@@ -1,4 +1,0 @@
-resolver: https://raw.githubusercontent.com/input-output-hk/haskell.nix/master/test/stack-local-resolver/snapshot.yaml
-
-packages:
-- .

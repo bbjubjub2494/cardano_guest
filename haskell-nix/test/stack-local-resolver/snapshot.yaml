@@ -1,4 +1,0 @@
-name: local-snapshot
-resolver: lts-14.13
-
-packages: []

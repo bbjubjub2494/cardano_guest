@@ -1,8 +1,0 @@
-resolver: lts-14.13
-
-packages:
-- .
-
-flags:
-  test-project-flags:
-    test-flag: true

@@ -6,24 +6,19 @@
   inputs.fup.url = "github:gytis-ivaskevicius/flake-utils-plus/v1.3.1";
   inputs.flake-compat.url = "github:edolstra/flake-compat";
   inputs.flake-compat.flake = false;
-  inputs.nix-tools.url = "path:nix-tools/";
-  inputs.nix-tools.flake = false;
-  inputs.haskell-nix.url = "path:haskell-nix/";
-  inputs.haskell-nix.inputs.nix-tools.follows = "nix-tools";
-  inputs.cardano-node.url = "path:cardano-node/";
-  inputs.cardano-node.inputs.haskellNix.follows = "haskell-nix";
-  inputs.cardano-node.inputs.nixpkgs.follows = "nixpkgs";
   inputs.nixpkgs.url = "nixpkgs/nixos-unstable";
 
-  inputs.cardano-wallet.url = "path:cardano-wallet/";
-  inputs.cardano-wallet.inputs.haskellNix.follows = "haskell-nix";
+  inputs.cardano-node.url = "github:input-output-hk/cardano-node/1.33.0";
+  inputs.cardano-node.inputs.nixpkgs.follows = "nixpkgs";
+
+  inputs.cardano-wallet.url = "github:lourkeur/cardano-wallet/v2022-01-18";
   inputs.cardano-wallet.inputs.nixpkgs.follows = "nixpkgs";
 
   inputs.config.url = "github:lourkeur/config";
   inputs.config.inputs.cardano.follows = "/";
 
   # Outputs are the public-facing interface to the flake.
-  outputs = inputs@{ self, fup, haskell-nix, cardano-node, cardano-wallet, nixpkgs, ... }: fup.lib.mkFlake {
+  outputs = inputs@{ self, fup, cardano-node, cardano-wallet, nixpkgs, ... }: fup.lib.mkFlake {
 
     inherit self inputs;
 
@@ -31,11 +26,6 @@
 
     sharedOverlays = [
       inputs.config.overlays.nix  # fix https://github.com/NixOS/nix/issues/6013
-      (final: _: {
-        inherit (haskell-nix.legacyPackages.${final.system}) haskell-nix;
-        inherit (cardano-node.legacyPackages.${final.system}) cardano-node;
-        inherit (cardano-wallet.packages.${final.system}) cardano-wallet;
-      })
     ];
 
     nixosModules = {
@@ -44,16 +34,6 @@
     };
 
     outputsBuilder = channels: {
-      devShell = channels.nixpkgs.callPackage nix/devshell.nix { };
-      devShells.withGHC8105 = channels.nixpkgs.callPackage nix/devshell.nix {
-        compiler-nix-name = "ghc8105";
-      };
-
-      packages = {
-        inherit (channels.nixpkgs) cardano-node;
-        inherit (channels.nixpkgs) cardano-wallet;
-      };
-
       checks.cardano-node-system = (nixpkgs.lib.nixosSystem {
         inherit (channels.nixpkgs) system;
         modules = [

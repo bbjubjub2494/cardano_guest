@@ -1,7 +1,0 @@
-name: stack-local-resolver
-
-dependencies:
-- base
-
-library:
-  source-dirs: src
