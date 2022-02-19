@@ -11,7 +11,7 @@
   inputs.cardano-node.url = "github:input-output-hk/cardano-node/1.33.0";
   inputs.cardano-node.inputs.nixpkgs.follows = "nixpkgs";
 
-  inputs.cardano-wallet.url = "github:lourkeur/cardano-wallet/v2022-01-18";
+  inputs.cardano-wallet.url = "github:lourkeur/cardano-wallet";
   inputs.cardano-wallet.inputs.nixpkgs.follows = "nixpkgs";
 
   inputs.config.url = "github:lourkeur/config";

@@ -229,16 +229,15 @@
         ]
       },
       "locked": {
-        "lastModified": 1644276601,
-        "narHash": "sha256-1KFYG1ru5xdtvT3q458fOZkIxho1wyuoT+QJqjik+K8=",
+        "lastModified": 1645283380,
+        "narHash": "sha256-pQluxmIGxhpL9BK2vnvBAFM5t137R5izHepNUqf4QVo=",
         "owner": "lourkeur",
         "repo": "cardano-wallet",
-        "rev": "8cc8cb3b7a74ba52816fa6c8a8aa7e62c4a5fdfc",
+        "rev": "cea168998446144f2c30b6f5f55ca61f0a97967c",
         "type": "github"
       },
       "original": {
         "owner": "lourkeur",
-        "ref": "v2022-01-18",
         "repo": "cardano-wallet",
         "type": "github"
       }
@@ -439,16 +438,15 @@
     "flake-compat_3": {
       "flake": false,
       "locked": {
-        "lastModified": 1638445031,
-        "narHash": "sha256-dtIZLlf2tfYeLvpZa/jFxP5HvfoXAzr7X76yn6FQAdM=",
-        "owner": "input-output-hk",
+        "lastModified": 1641205782,
+        "narHash": "sha256-4jY7RCWUoZ9cKD8co0/4tFARpWB+57+r1bLLvXNJliY=",
+        "owner": "edolstra",
         "repo": "flake-compat",
-        "rev": "20f79e3976b76a37090fbeec7b49dc08dac96b8e",
+        "rev": "b7547d3eed6f32d06102ead8991ec52ab0a4f1a7",
         "type": "github"
       },
       "original": {
-        "owner": "input-output-hk",
-        "ref": "fixes",
+        "owner": "edolstra",
         "repo": "flake-compat",
         "type": "github"
       }
