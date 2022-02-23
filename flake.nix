@@ -56,6 +56,11 @@
           }
         ];
       }).config.system.build.toplevel;
+
+      packages.ifd-pin = with channels.nixpkgs; writeShellApplication {
+        name = "ifd-pin";
+        text = builtins.readFile ./ifd-pin.sh;
+      };
     };
   };
 }
