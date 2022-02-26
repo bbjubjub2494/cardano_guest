@@ -33,9 +33,9 @@
       inherit (inputs.cardano-wallet.nixosModules) cardano-wallet;
     };
 
-    outputsBuilder = channels: {
+    outputsBuilder = channels: with channels.nixpkgs; {
       checks.cardano-node-system = (nixpkgs.lib.nixosSystem {
-        inherit (channels.nixpkgs) system;
+        inherit system;
         modules = [
           self.nixosModules.cardano-node
           {
@@ -46,7 +46,7 @@
       }).config.system.build.toplevel;
 
       checks.cardano-wallet-system = (nixpkgs.lib.nixosSystem {
-        inherit (channels.nixpkgs) system;
+        inherit system;
         modules = [
           self.nixosModules.cardano-node
           self.nixosModules.cardano-wallet
@@ -57,9 +57,12 @@
         ];
       }).config.system.build.toplevel;
 
-      packages.ifd-pin = with channels.nixpkgs; writeShellApplication {
-        name = "ifd-pin";
-        text = builtins.readFile ./ifd-pin.sh;
+      packages = {
+        inherit (cardano-node.packages.${system}) cardano-node;
+        ifd-pin = writeShellApplication {
+          name = "ifd-pin";
+          text = builtins.readFile ./ifd-pin.sh;
+        };
       };
     };
   };
