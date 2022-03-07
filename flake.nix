@@ -8,7 +8,7 @@
   inputs.flake-compat.flake = false;
   inputs.nixpkgs.url = "nixpkgs/nixos-unstable";
 
-  inputs.cardano-node.url = "github:input-output-hk/cardano-node/1.34.0";
+  inputs.cardano-node.url = "github:input-output-hk/cardano-node/1.34.1";
   inputs.cardano-node.inputs.nixpkgs.follows = "nixpkgs";
 
   inputs.cardano-wallet.url = "github:lourkeur/cardano-wallet";
