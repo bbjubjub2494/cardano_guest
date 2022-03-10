@@ -1,10 +1,9 @@
 # Cardano shim: Nix adapter
 
-This is just a flake
+When Daedalus gets flakified I will most likely switch to that.
 
 ## Goals
 - workaround [FUP] channel detection magic, which triggers on some of IOHK's flakes
-- disable `import-from-derivation` using [the prescribed method](manually-generating-nix-expressions)
+- ~~disable `import-from-derivation`~~ make it manageable for me with the `ifd-pin` tool.
 
 [FUP]: https://github.com/gytis-ivaskevicius/flake-utils-plus
-[manually-generating-nix-expressions]: https://input-output-hk.github.io/haskell.nix/dev/manually-generating-nix-expressions.html
