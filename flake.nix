@@ -14,19 +14,12 @@
   inputs.cardano-wallet.url = "github:lourkeur/cardano-wallet";
   inputs.cardano-wallet.inputs.nixpkgs.follows = "nixpkgs";
 
-  inputs.config.url = "github:lourkeur/config";
-  inputs.config.inputs.cardano.follows = "/";
-
   # Outputs are the public-facing interface to the flake.
   outputs = inputs@{ self, fup, cardano-node, cardano-wallet, nixpkgs, ... }: fup.lib.mkFlake {
 
     inherit self inputs;
 
     supportedSystems = [ "x86_64-linux" ];
-
-    sharedOverlays = [
-      inputs.config.overlays.nix  # fix https://github.com/NixOS/nix/issues/6013
-    ];
 
     nixosModules = {
       inherit (inputs.cardano-node.nixosModules) cardano-node;
