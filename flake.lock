@@ -562,16 +562,15 @@
         ]
       },
       "locked": {
-        "lastModified": 1651418797,
-        "narHash": "sha256-jjDDuv4+xOB6qlggGHVv4g2Mfkv+BgzVxNPvjtnA0vQ=",
+        "lastModified": 1653678368,
+        "narHash": "sha256-JsJuuOmphTjZYmrAPOOlozupgOZ7Lwy4B0WgvGhJZdk=",
         "owner": "lourkeur",
         "repo": "cardano-wallet",
-        "rev": "2a6a84de13f090e686ca3c4a2a1c803f878334ff",
+        "rev": "cde3766d5fe04c70c144300cf036785b71034c66",
         "type": "github"
       },
       "original": {
         "owner": "lourkeur",
-        "ref": "v2022-04-27",
         "repo": "cardano-wallet",
         "type": "github"
       }
@@ -2240,11 +2239,11 @@
     },
     "nixpkgs_10": {
       "locked": {
-        "lastModified": 1651310835,
-        "narHash": "sha256-MLk/zsLlbPhwFucxL64Fr+oIrvQC2/76Ap2F7ekbPNI=",
+        "lastModified": 1653229824,
+        "narHash": "sha256-klSCYMpR4TqWYoTD/xZ2qM9UIPRFC6pK+S/kJuVLbFw=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "fd3e33d696b81e76b30160dfad2efb7ac1f19879",
+        "rev": "06db2e2197401b74fcf82d4e84be15b0b5851c7b",
         "type": "github"
       },
       "original": {
