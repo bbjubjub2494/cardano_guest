@@ -51,8 +51,6 @@
       }).config.system.build.toplevel;
 
       packages = {
-        inherit (cardano-node.packages.${system}) cardano-node;
-        inherit (cardano-wallet.packages.${system}) cardano-wallet;
         ifd-pin = writeShellApplication {
           name = "ifd-pin";
           text = builtins.readFile ./ifd-pin.sh;
