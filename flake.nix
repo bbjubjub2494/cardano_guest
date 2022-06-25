@@ -11,7 +11,7 @@
   inputs.cardano-node.url = "github:input-output-hk/cardano-node/1.34.1";
   inputs.cardano-node.inputs.nixpkgs.follows = "nixpkgs";
 
-  inputs.cardano-wallet.url = "github:lourkeur/cardano-wallet/v2022-04-27";
+  inputs.cardano-wallet.url = "github:lourkeur/cardano-wallet";
   inputs.cardano-wallet.inputs.nixpkgs.follows = "nixpkgs";
 
   # Outputs are the public-facing interface to the flake.
