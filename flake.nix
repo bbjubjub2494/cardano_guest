@@ -22,7 +22,10 @@
     supportedSystems = [ "x86_64-linux" ];
 
     nixosModules = {
-      inherit (inputs.cardano-node.nixosModules) cardano-node;
+      cardano-node = { pkgs, ... }: {
+        imports = [inputs.cardano-node.nixosModules.cardano-node];
+        services.cardano-node.package = cardano-node.packages.${pkgs.system}.cardano-node;
+      };
       inherit (inputs.cardano-wallet.nixosModules) cardano-wallet;
     };
 
