@@ -6,13 +6,13 @@
   inputs.fup.url = "github:gytis-ivaskevicius/flake-utils-plus/v1.3.1";
   inputs.flake-compat.url = "github:edolstra/flake-compat";
   inputs.flake-compat.flake = false;
-  inputs.nixpkgs.url = "nixpkgs/nixos-21.11";
 
   inputs.cardano-node.url = "github:input-output-hk/cardano-node/1.35.0";
-  inputs.cardano-node.inputs.nixpkgs.follows = "nixpkgs";
 
   inputs.cardano-wallet.url = "github:lourkeur/cardano-wallet";
-  inputs.cardano-wallet.inputs.nixpkgs.follows = "nixpkgs";
+
+  nixConfig.extra-substituters = "https://hydra.iohk.io";
+  nixConfig.extra-trusted-public-keys = "iohk.cachix.org-1:DpRUyj7h7V830dp/i6Nti+NEO2/nhblbov/8MW7Rqoo= hydra.iohk.io:f/Ea+s+dFdN+3Y/G+FDgSq+a5NEWhJGzdjvKNGv0/EQ=";
 
   # Outputs are the public-facing interface to the flake.
   outputs = inputs@{ self, fup, cardano-node, cardano-wallet, nixpkgs, ... }: fup.lib.mkFlake {
