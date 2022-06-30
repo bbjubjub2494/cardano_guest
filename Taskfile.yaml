@@ -1,0 +1,23 @@
+# https://taskfile.dev
+
+version: '3'
+
+vars:
+  GUEST_NAME: cardano-node
+
+tasks:
+  ifd-pin:
+    desc: Pin all derivations needed by IFD.
+    cmds: 
+      - ifd-pin -A nixosConfigurations.{{.GUEST_NAME}}.config.system.build.toplevel
+    silent: true
+  check:
+    desc: Check the flake
+    cmds:
+      - nix flake check
+  install:
+    desc: Install the guest
+    cmds:
+      - miniguest install .#{{.GUEST_NAME}}
+  clean:
+    - git clean -Xf result* .ifd-pins/

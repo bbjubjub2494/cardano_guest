@@ -79,6 +79,7 @@
             buildInputs = [
               self.packages.${system}.ifd-pin
               miniguest.packages.${system}.default
+              go-task
             ];
           };
         };
