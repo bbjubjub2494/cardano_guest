@@ -1,6 +1,6 @@
 # The flake file is the entry point for nix commands
 {
-  description = "An adapter around iohk's nix projects";
+  description = "A miniguest running a Cardano full node";
 
   # Inputs are how Nix can use code from outside the flake during evaluation.
   inputs.fup.url = "github:gytis-ivaskevicius/flake-utils-plus/v1.3.1";
@@ -11,54 +11,76 @@
 
   inputs.cardano-wallet.url = "github:lourkeur/cardano-wallet";
 
+  inputs.miniguest.url = "github:lourkeur/miniguest/tool-cpp-rewrite";
+
   nixConfig.extra-substituters = "https://hydra.iohk.io";
   nixConfig.extra-trusted-public-keys = "iohk.cachix.org-1:DpRUyj7h7V830dp/i6Nti+NEO2/nhblbov/8MW7Rqoo= hydra.iohk.io:f/Ea+s+dFdN+3Y/G+FDgSq+a5NEWhJGzdjvKNGv0/EQ=";
 
   # Outputs are the public-facing interface to the flake.
-  outputs = inputs@{ self, fup, cardano-node, cardano-wallet, nixpkgs, ... }: fup.lib.mkFlake {
+  outputs = inputs @ {
+    self,
+    fup,
+    cardano-node,
+    cardano-wallet,
+    miniguest,
+    nixpkgs,
+    ...
+  }:
+    fup.lib.mkFlake {
+      inherit self inputs;
 
-    inherit self inputs;
+      supportedSystems = ["x86_64-linux"];
 
-    supportedSystems = [ "x86_64-linux" ];
-
-    nixosModules = {
-      cardano-node = { pkgs, ... }: {
-        imports = [inputs.cardano-node.nixosModules.cardano-node];
-        services.cardano-node.package = cardano-node.packages.${pkgs.system}.cardano-node;
-      };
-      inherit (inputs.cardano-wallet.nixosModules) cardano-wallet;
-    };
-
-    outputsBuilder = channels: with channels.nixpkgs; {
-      checks.cardano-node-system = (nixpkgs.lib.nixosSystem {
-        inherit system;
+      nixosConfigurations.cardano-node = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
         modules = [
-          self.nixosModules.cardano-node
-          {
-            boot.isContainer = true;
+          miniguest.nixosModules.core
+          cardano-node.nixosModules.cardano-node
+          cardano-wallet.nixosModules.cardano-wallet
+          ({
+            config,
+            pkgs,
+            ...
+          }: {
+            boot.miniguest.enable = true;
+            boot.miniguest.guestType = "lxc";
+
             services.cardano-node.enable = true;
-          }
-        ];
-      }).config.system.build.toplevel;
+            services.cardano-node.environment = "mainnet";
+            services.cardano-node.package = cardano-node.packages.${pkgs.system}.cardano-node;
 
-      checks.cardano-wallet-system = (nixpkgs.lib.nixosSystem {
-        inherit system;
-        modules = [
-          self.nixosModules.cardano-node
-          self.nixosModules.cardano-wallet
-          {
-            boot.isContainer = true;
             services.cardano-wallet.enable = true;
-          }
-        ];
-      }).config.system.build.toplevel;
 
-      packages = {
-        ifd-pin = writeShellApplication {
-          name = "ifd-pin";
-          text = builtins.readFile ./ifd-pin.sh;
-        };
+            users.users.cardano = {
+              isNormalUser = true;
+              uid = 3001;
+              packages = [config.services.cardano-wallet.package];
+            };
+
+            users.allowNoPasswordLogin = true; # I use lxc-attach so it's fine
+
+            users.mutableUsers = false;
+            boot.tmpOnTmpfs = true;
+
+            system.stateVersion = "22.05";
+          })
+        ];
       };
+
+      outputsBuilder = channels:
+        with channels.nixpkgs; {
+          packages = {
+            ifd-pin = writeShellApplication {
+              name = "ifd-pin";
+              text = builtins.readFile ./ifd-pin.sh;
+            };
+          };
+          devShells.default = mkShell {
+            buildInputs = [
+              self.packages.${system}.ifd-pin
+              miniguest.packages.${system}.default
+            ];
+          };
+        };
     };
-  };
 }
