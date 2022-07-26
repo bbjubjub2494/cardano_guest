@@ -5916,11 +5916,11 @@
         "nixpkgs": "nixpkgs_23"
       },
       "locked": {
-        "lastModified": 1656878219,
-        "narHash": "sha256-caY5kHWGjr51/jtHwbJ2ge9RjwES7Wvz97RKhWv9kqo=",
+        "lastModified": 1658827255,
+        "narHash": "sha256-ZF4uiklae3egxE1iP+FLRxA+9Sbs1ZVJ4wF8H6WEH4U=",
         "owner": "lourkeur",
         "repo": "miniguest",
-        "rev": "6986a2bada72291d42d8a7ad3d3018e8e4887baf",
+        "rev": "3ef9563e47b22037a0efa84ee8b2bab261c2c338",
         "type": "github"
       },
       "original": {
