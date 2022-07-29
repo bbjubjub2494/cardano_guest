@@ -1,6 +1,6 @@
 # The flake file is the entry point for nix commands
 {
-  description = "A miniguest running a Cardano full node";
+  description = "A miniguest running a Cardano full node and wallet";
 
   # Inputs are how Nix can use code from outside the flake during evaluation.
   inputs.fup.url = "github:gytis-ivaskevicius/flake-utils-plus/v1.3.1";
@@ -31,7 +31,7 @@
 
       supportedSystems = ["x86_64-linux"];
 
-      nixosConfigurations.cardano-node = nixpkgs.lib.nixosSystem {
+      nixosConfigurations.cardano = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
           miniguest.nixosModules.core

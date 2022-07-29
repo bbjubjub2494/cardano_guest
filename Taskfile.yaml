@@ -3,7 +3,7 @@
 version: '3'
 
 vars:
-  GUEST_NAME: cardano-node
+  GUEST_NAME: cardano
 
 tasks:
   ifd-pin:
