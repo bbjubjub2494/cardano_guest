@@ -9,15 +9,20 @@ tasks:
   ifd-pin:
     desc: Pin all derivations needed by IFD.
     cmds: 
-      - ifd-pin -A nixosConfigurations.{{.GUEST_NAME}}.config.system.build.toplevel
+      - ifd-pin -A nixosConfigurations.{{.GUEST_NAME}}.config.system.build.miniguest
     silent: true
   check:
     desc: Check the flake
     cmds:
       - nix flake check
+  build:
+    desc: Build the guest
+    cmds: 
+      - nix build .#nixosConfigurations.{{.GUEST_NAME}}.config.system.build.miniguest
   install:
     desc: Install the guest
+    deps: [ 'build' ]
     cmds:
-      - miniguest install .#{{.GUEST_NAME}}
+      - sudo miniguest install .#{{.GUEST_NAME}}
   clean:
     - git clean -Xf result* .ifd-pins/
