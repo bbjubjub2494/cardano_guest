@@ -9,7 +9,7 @@
 
   inputs.cardano-node.url = "github:input-output-hk/cardano-node/1.35.0";
 
-  inputs.cardano-wallet.url = "github:input-output-hk/cardano-wallet/v2022-07-01";
+  inputs.cardano-wallet.url = "github:lourkeur/cardano-wallet/v2022-07-01";
 
   inputs.miniguest.url = "github:lourkeur/miniguest/tool-cpp-rewrite";
 
