@@ -5916,16 +5916,16 @@
         "nixpkgs": "nixpkgs_23"
       },
       "locked": {
-        "lastModified": 1659366523,
-        "narHash": "sha256-zKuZdCEvQIFAfk1RyML8rFGto7yWpDYTrD7/5mMeBR4=",
+        "lastModified": 1660151366,
+        "narHash": "sha256-LDCafwkxr32hZQYC/2I9ey8wFxUgJNwu8GqPej2NNAE=",
         "owner": "lourkeur",
         "repo": "miniguest",
-        "rev": "15c1e21a6b70383b1d8c00c0c51b07249db0c33c",
+        "rev": "22c2504e4868dd582c908aedbdef05eae68fa40e",
         "type": "github"
       },
       "original": {
         "owner": "lourkeur",
-        "ref": "tool-cpp-rewrite",
+        "ref": "develop",
         "repo": "miniguest",
         "type": "github"
       }

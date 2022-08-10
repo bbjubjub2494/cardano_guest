@@ -11,7 +11,7 @@
 
   inputs.cardano-wallet.url = "github:lourkeur/cardano-wallet/v2022-07-01";
 
-  inputs.miniguest.url = "github:lourkeur/miniguest/tool-cpp-rewrite";
+  inputs.miniguest.url = "github:lourkeur/miniguest/develop";
 
   nixConfig.extra-substituters = "https://hydra.iohk.io";
   nixConfig.extra-trusted-public-keys = "iohk.cachix.org-1:DpRUyj7h7V830dp/i6Nti+NEO2/nhblbov/8MW7Rqoo= hydra.iohk.io:f/Ea+s+dFdN+3Y/G+FDgSq+a5NEWhJGzdjvKNGv0/EQ=";
