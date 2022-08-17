@@ -1459,16 +1459,16 @@
         "utils": "utils_18"
       },
       "locked": {
-        "lastModified": 1656166930,
-        "narHash": "sha256-R7YGQ6UMG16ed9sGguDWq2cUgFnADeRdx8O2s2HqWRk=",
+        "lastModified": 1659625017,
+        "narHash": "sha256-4IrheFeoWfvkZQndEk4fGUkOiOjcVhcyXZ6IqmvkDgg=",
         "owner": "input-output-hk",
         "repo": "cardano-node",
-        "rev": "9f1d7dc163ee66410d912e48509d6a2300cfa68a",
+        "rev": "950c4e222086fed5ca53564e642434ce9307b0b9",
         "type": "github"
       },
       "original": {
         "owner": "input-output-hk",
-        "ref": "1.35.0",
+        "ref": "1.35.3",
         "repo": "cardano-node",
         "type": "github"
       }
@@ -5916,11 +5916,11 @@
         "nixpkgs": "nixpkgs_23"
       },
       "locked": {
-        "lastModified": 1660151366,
-        "narHash": "sha256-LDCafwkxr32hZQYC/2I9ey8wFxUgJNwu8GqPej2NNAE=",
+        "lastModified": 1660754969,
+        "narHash": "sha256-dtN8ptTZuWb26M2MgiL2HHg9WIUbBQrR75MvLWrMO3o=",
         "owner": "lourkeur",
         "repo": "miniguest",
-        "rev": "22c2504e4868dd582c908aedbdef05eae68fa40e",
+        "rev": "5b22f244dbbc60ee4dd228e2b5635e06ac370a95",
         "type": "github"
       },
       "original": {
@@ -7844,11 +7844,11 @@
     },
     "nixpkgs_24": {
       "locked": {
-        "lastModified": 1660046142,
-        "narHash": "sha256-wt26AMl+vWOSf15bj9P9LASRSa21UAIJpHmHezL1ucY=",
+        "lastModified": 1660639432,
+        "narHash": "sha256-2WDiboOCfB0LhvnDVMXOAr8ZLDfm3WdO54CkoDPwN1A=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "65f39b913d0910907ea22be29f108402924644c2",
+        "rev": "6c6409e965a6c883677be7b9d87a95fab6c3472e",
         "type": "github"
       },
       "original": {
