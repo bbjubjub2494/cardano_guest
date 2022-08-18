@@ -2138,16 +2138,16 @@
         ]
       },
       "locked": {
-        "lastModified": 1659129282,
-        "narHash": "sha256-tc0msx7VETJoeFegu5JjAsBAJ/EG0ScE+wAg6IPko10=",
+        "lastModified": 1660847141,
+        "narHash": "sha256-tsxBt2FMTs4kV/BCwUWddnIalzxzWv2HygTRlvExhvI=",
         "owner": "lourkeur",
         "repo": "cardano-wallet",
-        "rev": "292351c4aedf2eb5a4cedd26bec3db9a20689856",
+        "rev": "ab06ecb0812afe7061478901fcee04a04128da0c",
         "type": "github"
       },
       "original": {
         "owner": "lourkeur",
-        "ref": "v2022-07-01",
+        "ref": "v2022-08-16",
         "repo": "cardano-wallet",
         "type": "github"
       }
