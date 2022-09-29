@@ -48,6 +48,10 @@
             services.cardano-node.enable = true;
             services.cardano-node.environment = "mainnet";
             services.cardano-node.package = cardano-node.packages.${pkgs.system}.cardano-node;
+            systemd.services.cardano-wallet.serviceConfig = {
+              RestartSec = "3s";
+              Restart = "always";
+            };
 
             services.cardano-wallet.enable = true;
 
