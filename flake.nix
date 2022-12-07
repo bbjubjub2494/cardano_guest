@@ -7,7 +7,7 @@
   inputs.flake-compat.url = "github:edolstra/flake-compat";
   inputs.flake-compat.flake = false;
 
-  inputs.cardano-node.url = "github:input-output-hk/cardano-node/1.35.3";
+  inputs.cardano-node.url = "github:input-output-hk/cardano-node/1.35.4";
 
   inputs.cardano-wallet.url = "github:lourkeur/cardano-wallet/v2022-10-06";
 
@@ -78,6 +78,7 @@
               name = "ifd-pin";
               text = builtins.readFile ./ifd-pin.sh;
             };
+            inherit (cardano-node.packages.${pkgs.system}) cardano-node;
           };
           devShells.default = mkShell {
             buildInputs = [
