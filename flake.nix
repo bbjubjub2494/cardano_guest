@@ -7,7 +7,7 @@
   inputs.flake-compat.url = "github:edolstra/flake-compat";
   inputs.flake-compat.flake = false;
 
-  inputs.cardano-node.url = "github:input-output-hk/cardano-node/1.35.4";
+  inputs.cardano-node.url = "github:input-output-hk/cardano-node/1.35.5";
 
   inputs.cardano-wallet.url = "github:lourkeur/cardano-wallet/v2022-12-14";
 
