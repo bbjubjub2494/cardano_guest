@@ -9,7 +9,7 @@
 
   inputs.cardano-node.url = "github:input-output-hk/cardano-node/1.35.4";
 
-  inputs.cardano-wallet.url = "github:lourkeur/cardano-wallet/v2022-10-06";
+  inputs.cardano-wallet.url = "github:lourkeur/cardano-wallet/v2022-12-14";
 
   inputs.miniguest.url = "github:lourkeur/miniguest/develop";
 
