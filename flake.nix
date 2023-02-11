@@ -87,6 +87,7 @@
               go-task
             ];
           };
+          formatter = alejandra;
         };
     };
 }
