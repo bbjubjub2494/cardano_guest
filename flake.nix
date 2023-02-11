@@ -3,7 +3,6 @@
   description = "A miniguest running a Cardano full node and wallet";
 
   # Inputs are how Nix can use code from outside the flake during evaluation.
-  inputs.fup.url = "github:gytis-ivaskevicius/flake-utils-plus/v1.3.1";
   inputs.flake-compat.url = "github:edolstra/flake-compat";
   inputs.flake-compat.flake = false;
 
@@ -19,19 +18,19 @@
   # Outputs are the public-facing interface to the flake.
   outputs = inputs @ {
     self,
-    fup,
+    flake-parts,
     cardano-node,
     cardano-wallet,
     miniguest,
     nixpkgs,
     ...
   }:
-    fup.lib.mkFlake {
-      inherit self inputs;
+    flake-parts.lib.mkFlake {
+      inherit inputs;
+    } {
+      systems = ["x86_64-linux"];
 
-      supportedSystems = ["x86_64-linux"];
-
-      nixosConfigurations.cardano = nixpkgs.lib.nixosSystem {
+      flake.nixosConfigurations.cardano = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
           miniguest.nixosModules.core
@@ -71,19 +70,24 @@
         ];
       };
 
-      outputsBuilder = channels:
-        with channels.nixpkgs; {
+      perSystem = {
+        inputs',
+        self',
+        pkgs,
+        ...
+      }:
+        with pkgs; {
           packages = {
             ifd-pin = writeShellApplication {
               name = "ifd-pin";
               text = builtins.readFile ./ifd-pin.sh;
             };
-            inherit (cardano-node.packages.${pkgs.system}) cardano-node;
+            inherit (inputs'.cardano-node.packages) cardano-node;
           };
           devShells.default = mkShell {
             buildInputs = [
-              self.packages.${system}.ifd-pin
-              miniguest.packages.${system}.default
+              self'.packages.ifd-pin
+              inputs'.miniguest.packages.default
               go-task
             ];
           };
