@@ -8,7 +8,7 @@
 
   inputs.cardano-node.url = "github:input-output-hk/cardano-node/1.35.5";
 
-  inputs.cardano-wallet.url = "github:lourkeur/cardano-wallet/v2022-12-14";
+  inputs.cardano-wallet.url = "github:input-output-hk/cardano-wallet/v2022-12-14";
 
   inputs.miniguest.url = "github:lourkeur/miniguest/develop";
 
@@ -53,6 +53,10 @@
             };
 
             services.cardano-wallet.enable = true;
+            services.cardano-wallet.package =
+              # default value: ((import ../.. { }).legacyPackages.${pkgs.system}).hsPkgs.cardano-wallet.components.exes.cardano-wallet
+              # avoid self-import because it triggers impurities
+              cardano-wallet.legacyPackages.${pkgs.system}.hsPkgs.cardano-wallet.components.exes.cardano-wallet;
 
             users.users.cardano = {
               isNormalUser = true;
