@@ -42,6 +42,12 @@
               "${modulesPath}/virtualisation/lxc-container.nix"
             ];
 
+            nix.registry.config.to = {
+              type = "github";
+              owner = "lourkeur";
+              repo = "cardano_guest";
+            };
+
             services.cardano-node.enable = true;
             services.cardano-node.environment = "mainnet";
             services.cardano-node.package = cardano-node.packages.${pkgs.system}.cardano-node;
