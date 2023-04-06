@@ -42,6 +42,8 @@
               "${modulesPath}/virtualisation/lxc-container.nix"
             ];
 
+            networking.hostName = "cardano";
+
             nix.registry.config.to = {
               type = "github";
               owner = "lourkeur";
