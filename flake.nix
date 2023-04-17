@@ -8,7 +8,7 @@
 
   inputs.cardano-node.url = "github:input-output-hk/cardano-node/1.35.7";
 
-  inputs.cardano-wallet.url = "github:input-output-hk/cardano-wallet/v2022-12-14";
+  inputs.cardano-wallet.url = "github:input-output-hk/cardano-wallet/v2023-04-14";
 
   nixConfig.extra-substituters = "https://hydra.iohk.io";
   nixConfig.extra-trusted-public-keys = "iohk.cachix.org-1:DpRUyj7h7V830dp/i6Nti+NEO2/nhblbov/8MW7Rqoo= hydra.iohk.io:f/Ea+s+dFdN+3Y/G+FDgSq+a5NEWhJGzdjvKNGv0/EQ=";
